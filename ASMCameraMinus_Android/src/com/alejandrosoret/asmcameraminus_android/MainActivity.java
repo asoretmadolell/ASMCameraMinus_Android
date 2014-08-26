@@ -1,14 +1,15 @@
 package com.alejandrosoret.asmcameraminus_android;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alejandrosoret.asmcameraminus_android.adapters.PhotoAdapter;
 
 /*************************************************************/
 /*                                                           */ 
@@ -20,11 +21,10 @@ import android.widget.ListView;
 /*                                                           */ 
 /*                                                           */ 
 /*************************************************************/
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends ActionBarActivity implements OnItemClickListener
 {
 	
-	private ListView mainListView;
-	private ArrayAdapter< String > listAdapter;
+	private ListView photoListView;
 	
 	/*********************************************************/
 	/*                                                       */ 
@@ -37,17 +37,23 @@ public class MainActivity extends ActionBarActivity
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.activity_main );
 		
-		mainListView = (ListView) findViewById( R.id.mainListView );
-		
-		// Create and populate a List of names. 
-		String[] names = new String[] { "Alejandro", "Jorge", "Yvon", "Julian", "David", "Pablo", "Jose", "Jon", "Kofi" };
-		ArrayList< String > nameList = new ArrayList<String>();
-		nameList.addAll( Arrays.asList( names ) );
-		
-		// Create ArrayAdapter using the names list.
-		listAdapter = new ArrayAdapter<String>( this, R.layout.listview_main_item, nameList );
-		
-		// Set the ArrayAdapter as the ListView's adapter.
-		mainListView.setAdapter( listAdapter );
-	}	
-}
+		photoListView = (ListView) findViewById( R.id.IDV_PHOTO_LISTVIEW );
+		photoListView.setAdapter( new PhotoAdapter( this ) );
+		photoListView.setOnItemClickListener( this );
+	}
+
+	/*********************************************************/
+	/*                                                       */ 
+	/* MainActivity.onItemClick()                            */ 
+	/*                                                       */ 
+	/*********************************************************/
+	@Override
+     public void onItemClick( AdapterView< ? > parent, View view, int position, long id )
+     {
+		if( (ListView)parent == photoListView )
+          {
+	          TextView name = (TextView)view.findViewById( R.id.IDV_PHOTO_NAME );
+	          Toast.makeText( this, name.getText(), Toast.LENGTH_LONG ).show();
+          }
+     }
+}	
