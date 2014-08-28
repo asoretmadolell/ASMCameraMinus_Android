@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Camera Minus</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
+    <string name="IDS_APP_NAME">Camera Minus</string>
+    <string name="IDS_HELLO_WORLD">Hello world!</string>
+    <string name="IDS_ACTION_SETTINGS">Settings</string>
+    <string name="IDS_NETWORK_ERROR_MSG">Network Error</string>
+    <string name="IDS_RETRY">Retry</string>
 </resources>
