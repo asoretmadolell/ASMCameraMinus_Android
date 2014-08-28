@@ -80,7 +80,7 @@ public class PhotoAdapter extends BaseAdapter
 		if( convertView == null)
 		{
 			LayoutInflater inflater = (LayoutInflater)context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-			itemView = inflater.inflate( R.layout.listview_student_item, null );
+			itemView = inflater.inflate( R.layout.listview_photo_item, null );
 		}
 		else itemView = convertView;
 		
