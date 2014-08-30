@@ -66,6 +66,6 @@ public class PhotoAdapter extends CursorAdapter
 		TextView photoDescription = (TextView) itemLayout.findViewById( R.id.IDV_PHOTO_DESCRIPTION );
 		
 		photoName.setText( photo.getTitle() );
-		photoDescription.setText( "esto es una prueba" );
+		photoDescription.setText( photo.getDescription() );
      }
 }

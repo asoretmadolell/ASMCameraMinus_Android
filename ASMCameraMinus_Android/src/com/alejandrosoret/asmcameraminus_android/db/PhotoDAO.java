@@ -50,6 +50,7 @@ public class PhotoDAO
 		// Values to be inserted
 		ContentValues values = new ContentValues();
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_TITLE, photo.getTitle() );
+		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_DESCRIPTION, photo.getDescription() );
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE, photo.getCreationDate() == null ? null : photo.getCreationDate().getTime() );
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_MODIFIED_DATE, photo.getModifiedDate() == null ? null : photo.getModifiedDate().getTime() );
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_WIDTH, photo.getWidth() );
@@ -85,6 +86,7 @@ public class PhotoDAO
 		String[] columns = {
 				CameraMinusDbContract.PhotoEntry._ID,
 				CameraMinusDbContract.PhotoEntry.COLUMN_NAME_TITLE,
+				CameraMinusDbContract.PhotoEntry.COLUMN_NAME_DESCRIPTION,
 				CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE,
 				CameraMinusDbContract.PhotoEntry.COLUMN_NAME_MODIFIED_DATE,
 				CameraMinusDbContract.PhotoEntry.COLUMN_NAME_WIDTH,
@@ -213,6 +215,7 @@ public class PhotoDAO
 		// Defines a map from column names to new column values. "null" is a valid value that will be translated to NULL.
 		ContentValues values = new ContentValues();
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_TITLE, photo.getTitle() );
+		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_DESCRIPTION, photo.getDescription() );
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE, photo.getCreationDate() == null ? null : photo.getCreationDate().getTime() );
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_MODIFIED_DATE, photo.getModifiedDate() == null ? null : photo.getModifiedDate().getTime() );
 		values.put( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_WIDTH, photo.getWidth() );

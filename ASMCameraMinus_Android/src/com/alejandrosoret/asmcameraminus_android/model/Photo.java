@@ -20,6 +20,7 @@ public class Photo
 {
 	private long id;
 	private String title;
+	private String description;
 	private Date creationDate;
 	private Date modifiedDate;
 	private long width;
@@ -35,10 +36,11 @@ public class Photo
 	/* Photo.Photo()                                         */ 
 	/*                                                       */ 
 	/*********************************************************/
-	public Photo( long id, String title, Date creationDate, Date modifiedDate, long width, long height, double weight, double latitude, double longitude, double altitude, String address )
+	public Photo( long id, String title, String description, Date creationDate, Date modifiedDate, long width, long height, double weight, double latitude, double longitude, double altitude, String address )
 	{
 		this.id = id;
 		this.title = title;
+		this.description = description;
 		this.creationDate = creationDate;
 		this.modifiedDate = modifiedDate;
 		this.width = width;
@@ -57,10 +59,11 @@ public class Photo
 	/*********************************************************/
 	public Photo( Cursor cursor )
 	{
-		this( 0, null, null, null, 0, 0, 0, 0, 0, 0, null );
+		this( 0, null, null, null, null, 0, 0, 0, 0, 0, 0, null );
 		
 		this.id = cursor.getLong( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry._ID ) );
 		this.title = cursor.getString( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_TITLE ) );
+		this.description = cursor.getString( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_DESCRIPTION ) );
 		
 		if ( !cursor.isNull( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE ) ) )
 		{
@@ -94,6 +97,11 @@ public class Photo
 	public String getTitle()
 	{
 		return title;
+	}
+
+	public String getDescription()
+	{
+		return description;
 	}
 
 	public Date getCreationDate()

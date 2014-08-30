@@ -1,8 +1,9 @@
 package com.alejandrosoret.asmcameraminus_android;
 
+import java.util.Date;
+
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.alejandrosoret.asmcameraminus_android.adapters.PhotoAdapter;
 import com.alejandrosoret.asmcameraminus_android.db.PhotoDAO;
@@ -29,7 +29,6 @@ import com.alejandrosoret.asmcameraminus_android.model.Photo;
 public class MainActivity extends ActionBarActivity implements OnItemClickListener
 {
 	private ListView mList;
-	private PhotoAdapter mAdapter;
 	
 	private ProgressBar mProgress;
 	
@@ -61,7 +60,8 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
      {
 		PhotoDAO dao = new PhotoDAO( this );
 //		dao.deleteAll();
-		Photo photo = new Photo( 0, "Titulo :D", null, null, 1024, 768, 20, 1.00, 1.00, 1.00, "" );
+		
+		Photo photo = new Photo( 0, "Titulo :D", "Descripcion", new Date(), new Date(), 1024, 768, 20, 1.00, 1.00, 1.00, "" );
 		dao.insert( photo );
      }
 

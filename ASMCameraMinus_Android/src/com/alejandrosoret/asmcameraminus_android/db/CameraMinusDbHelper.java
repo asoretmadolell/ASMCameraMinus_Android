@@ -23,6 +23,7 @@ public class CameraMinusDbHelper extends SQLiteOpenHelper
 			"CREATE TABLE " + CameraMinusDbContract.PhotoEntry.TABLE_NAME + " (" +
 					CameraMinusDbContract.PhotoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 					CameraMinusDbContract.PhotoEntry.COLUMN_NAME_TITLE + " TEXT, " +
+					CameraMinusDbContract.PhotoEntry.COLUMN_NAME_DESCRIPTION + " TEXT, " +
 					CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE + " DATE, " +
 					CameraMinusDbContract.PhotoEntry.COLUMN_NAME_MODIFIED_DATE + " DATE, " +
 					CameraMinusDbContract.PhotoEntry.COLUMN_NAME_WIDTH + " INTEGER, " +

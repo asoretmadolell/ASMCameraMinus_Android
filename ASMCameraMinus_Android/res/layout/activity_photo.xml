@@ -13,17 +13,88 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/IDV_PHOTO_NAME"
-        android:text="hola" />
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_NAME" />
     
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:id="@+id/IDV_PHOTO_DESCRIPTION"
         android:text="hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_CREATIONDATE"
+        android:text="Creation date" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_MODIFIEDDATE"
+        android:text="Modified date" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_WIDTH"
+        android:text="Width" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_HEIGHT"
+        android:text="Height" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_WEIGHT"
+        android:text="Weight" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_LATITUDE"
+        android:text="Latitude" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_LONGITUDE"
+        android:text="Longitude" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_ALTITUDE"
+        android:text="Altitude" />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/IDV_PHOTO_ADDRESS"
+        android:text="Address" />
     
 </LinearLayout>

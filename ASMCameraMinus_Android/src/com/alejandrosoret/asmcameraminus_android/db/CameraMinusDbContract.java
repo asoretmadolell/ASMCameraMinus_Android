@@ -28,6 +28,7 @@ public class CameraMinusDbContract
 	{
 		public static final String TABLE_NAME = "photo";
 		public static final String COLUMN_NAME_TITLE = "title";
+		public static final String COLUMN_NAME_DESCRIPTION = "description";
 		public static final String COLUMN_NAME_CREATION_DATE = "creationDate";
 		public static final String COLUMN_NAME_MODIFIED_DATE = "modifiedDate";
 		public static final String COLUMN_NAME_WIDTH = "width";
