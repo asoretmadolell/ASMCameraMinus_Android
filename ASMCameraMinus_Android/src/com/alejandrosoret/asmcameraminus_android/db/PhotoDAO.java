@@ -30,7 +30,7 @@ public class PhotoDAO
      // The constructor initializes an SQLiteOpenHelper object
 	public PhotoDAO( Context context )
 	{
-		mDbHelper = new CameraMinusDbHelper( context, null, null, 0, null );
+		mDbHelper = new CameraMinusDbHelper( context );
 	}
 	
 	/*********************************************************/
@@ -70,11 +70,11 @@ public class PhotoDAO
 	
 	/*********************************************************/
 	/*                                                       */ 
-	/* PhotoDAO.selectAll()                                  */ 
+	/* PhotoDAO.selectAllPhotos                              */ 
 	/*                                                       */ 
 	/*********************************************************/
 	// Returns all of the entries in the Photo table
-	public Cursor selectAll()
+	public Cursor selectAllPhotos()
 	{
 		if( mDb == null ) { mDb = mDbHelper.getReadableDatabase(); }
 		
@@ -109,13 +109,38 @@ public class PhotoDAO
 		String having = null;
 		
 		// Defines the order in which our results will be returned, formatted as an SQL ORDER BY clause (excluding the ORDER BY itself). Passing "null" will use the default sort order, which may be unordered.
-		String order = CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE + " DESC";
+		String orderBy = CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE + " DESC";
 		
 		// Queries the given table, returning a "Cursor" over the result set. "http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#query(java.lang.String, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, java.lang.String, java.lang.String)"
-		Cursor cursor = mDb.query( table, columns, selection, selectionArgs, groupBy, having, order );
+		Cursor cursor = mDb.query( table, columns, selection, selectionArgs, groupBy, having, orderBy );
 		
 		// A "Cursor" object, which is positioned before the first entry. Note that Cursors are not synchronized!
 		return cursor;
+	}
+	
+	/*********************************************************/
+	/*                                                       */ 
+	/* PhotoDAO.selectPhoto()                                */ 
+	/*                                                       */ 
+	/*********************************************************/
+	// Returns a Photo matching the given ID
+	public Photo selectPhoto( long photoId )
+	{
+		if( mDb == null ) { mDb = mDbHelper.getReadableDatabase(); }
+		String table = CameraMinusDbContract.PhotoEntry.TABLE_NAME;
+		String[] columns = { "*" }; // This is basically the same thing we did in selectAllPhotos(). "*" means "ALL". Obviously.
+		String selection = CameraMinusDbContract.PhotoEntry._ID + " = ?" ;
+		String[] selectionArgs = { "" + photoId }; // The way of the Samuel - Converting numbers to strings.
+		String groupBy = null;
+		String having = null;
+		String orderBy = null;
+		
+		Cursor photoCursor = mDb.query( table, columns, selection, selectionArgs, groupBy, having, orderBy );
+		
+		Photo photo = null;
+		if( photoCursor.moveToFirst() ) { photo = new Photo( photoCursor ); }
+		
+		return photo;
 	}
 	
 	/*********************************************************/

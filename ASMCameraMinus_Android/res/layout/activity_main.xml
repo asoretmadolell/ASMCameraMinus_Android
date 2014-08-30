@@ -9,5 +9,11 @@
         android:id="@+id/IDV_PHOTO_LISTVIEW">
         
     </ListView>
+
+    <ProgressBar
+        android:id="@+id/IDV_PROGRESSBAR"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center" />
     
 </LinearLayout>

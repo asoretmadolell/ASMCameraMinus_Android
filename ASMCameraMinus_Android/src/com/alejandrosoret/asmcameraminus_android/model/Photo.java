@@ -2,6 +2,10 @@ package com.alejandrosoret.asmcameraminus_android.model;
 
 import java.util.Date;
 
+import com.alejandrosoret.asmcameraminus_android.db.CameraMinusDbContract;
+
+import android.database.Cursor;
+
 /*************************************************************/
 /*                                                           */ 
 /* Photo                                                     */ 
@@ -44,6 +48,37 @@ public class Photo
 		this.longitude = longitude;
 		this.altitude = altitude;
 		this.address = address;
+	}
+	
+	/*********************************************************/
+	/*                                                       */ 
+	/* Photo.Photo()                                         */ 
+	/*                                                       */ 
+	/*********************************************************/
+	public Photo( Cursor cursor )
+	{
+		this( 0, null, null, null, 0, 0, 0, 0, 0, 0, null );
+		
+		this.id = cursor.getLong( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry._ID ) );
+		this.title = cursor.getString( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_TITLE ) );
+		
+		if ( !cursor.isNull( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE ) ) )
+		{
+			this.creationDate = new Date( cursor.getLong( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_CREATION_DATE ) ) );
+		}
+		
+		if ( !cursor.isNull( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_MODIFIED_DATE ) ) )
+		{
+			this.modifiedDate = new Date( cursor.getLong( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_MODIFIED_DATE ) ) );
+		}
+		
+		this.width = cursor.getLong( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_WIDTH ) );
+		this.height = cursor.getLong( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_HEIGHT ) );
+		this.weight = cursor.getDouble( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_WEIGHT ) );
+		this.latitude = cursor.getDouble( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_LATITUDE) );
+		this.longitude = cursor.getDouble( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_LONGITUDE ) );
+		this.altitude = cursor.getDouble( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_ALTITUDE ) );
+		this.address = cursor .getString( cursor.getColumnIndex( CameraMinusDbContract.PhotoEntry.COLUMN_NAME_ADDRESS ) );
 	}
 
 	/*********************************************************/

@@ -1,13 +1,15 @@
 package com.alejandrosoret.asmcameraminus_android.adapters;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.alejandrosoret.asmcameraminus_android.R;
+import com.alejandrosoret.asmcameraminus_android.model.Photo;
 
 /*************************************************************/
 /*                                                           */ 
@@ -19,77 +21,51 @@ import com.alejandrosoret.asmcameraminus_android.R;
 /*                                                           */ 
 /*                                                           */ 
 /*************************************************************/
-public class PhotoAdapter extends BaseAdapter
+public class PhotoAdapter extends CursorAdapter
 {
 	private Context context;
-	String[] photos = new String[] { "foto1", "foto2", "foto3", "foto4", "foto5", "foto6", "foto7", "foto8", "foto9" };
-	String[] photoDescriptions = new String[] { "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9" };
 
 	/*********************************************************/
 	/*                                                       */ 
 	/* PhotoAdapter.PhotoAdapter()                           */ 
 	/*                                                       */ 
 	/*********************************************************/
-	public PhotoAdapter( Context context )
+	public PhotoAdapter( Context context, Cursor cursor )
 	{
+		super( context, cursor, false );
 		this.context = context;
 	}
-	
+
 	/*********************************************************/
 	/*                                                       */ 
-	/* PhotoAdapter.getCount()                               */ 
+	/* PhotoAdapter.newView()                                */ 
 	/*                                                       */ 
 	/*********************************************************/
 	@Override
-     public int getCount()
+     public View newView( Context context, Cursor cursor, ViewGroup parent )
      {
-	     return photos.length;
+		View itemLayout = null;
+		
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+		itemLayout = inflater.inflate( R.layout.listview_photo_item, null );
+		
+	     return itemLayout;
      }
 
 	/*********************************************************/
 	/*                                                       */ 
-	/* PhotoAdapter.getItem()                                */ 
+	/* PhotoAdapter.bindView()                               */ 
 	/*                                                       */ 
 	/*********************************************************/
 	@Override
-     public Object getItem( int position )
+     public void bindView( View itemLayout, Context context, Cursor cursor )
      {
-	     return null;
-     }
-
-	/*********************************************************/
-	/*                                                       */ 
-	/* PhotoAdapter.getItemId()                              */ 
-	/*                                                       */ 
-	/*********************************************************/
-	@Override
-     public long getItemId( int position )
-     {
-	     return position;
-     }
-
-	/*********************************************************/
-	/*                                                       */ 
-	/* PhotoAdapter.getView()                                */ 
-	/*                                                       */ 
-	/*********************************************************/
-	@Override
-     public View getView( int position, View convertView, ViewGroup parent )
-     {
-		View itemView = null;
-		if( convertView == null)
-		{
-			LayoutInflater inflater = (LayoutInflater)context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-			itemView = inflater.inflate( R.layout.listview_photo_item, null );
-		}
-		else itemView = convertView;
+		final Photo photo = new Photo( cursor );
 		
-		TextView photoName = (TextView) itemView.findViewById( R.id.IDV_PHOTO_NAME );
-		photoName.setText( photos[ position] );
+		TextView photoName = (TextView) itemLayout.findViewById( R.id.IDV_PHOTO_NAME );
+		TextView photoDescription = (TextView) itemLayout.findViewById( R.id.IDV_PHOTO_DESCRIPTION );
 		
-		TextView photoDescription = (TextView) itemView.findViewById( R.id.IDV_PHOTO_DESCRIPTION );
-		photoDescription.setText( photoDescriptions[ position ] );
-		
-	     return itemView;
+		photoName.setText( photo.getTitle() );
+		photoDescription.setText( "esto es una prueba" );
      }
 }

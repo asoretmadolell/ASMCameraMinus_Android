@@ -1,9 +1,7 @@
 package com.alejandrosoret.asmcameraminus_android.db;
 
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /*************************************************************/
@@ -44,9 +42,9 @@ public class CameraMinusDbHelper extends SQLiteOpenHelper
 	/* CamereaMinusDbHelper.CamereaMinusDbHelper()           */ 
 	/*                                                       */ 
 	/*********************************************************/
-	public CameraMinusDbHelper( Context context, String name, CursorFactory factory, int version, DatabaseErrorHandler errorHandler )
+	public CameraMinusDbHelper( Context context )
      {
-	     super( context, name, factory, version, errorHandler );
+	     super( context, DATABASE_NAME, null, DATABASE_VERSION );
      }
 
 	/*********************************************************/

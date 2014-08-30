@@ -1,15 +1,20 @@
 package com.alejandrosoret.asmcameraminus_android;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alejandrosoret.asmcameraminus_android.adapters.PhotoAdapter;
+import com.alejandrosoret.asmcameraminus_android.db.PhotoDAO;
+import com.alejandrosoret.asmcameraminus_android.model.Photo;
 
 /*************************************************************/
 /*                                                           */ 
@@ -23,8 +28,10 @@ import com.alejandrosoret.asmcameraminus_android.adapters.PhotoAdapter;
 /*************************************************************/
 public class MainActivity extends ActionBarActivity implements OnItemClickListener
 {
+	private ListView mList;
+	private PhotoAdapter mAdapter;
 	
-	private ListView photoListView;
+	private ProgressBar mProgress;
 	
 	/*********************************************************/
 	/*                                                       */ 
@@ -37,10 +44,26 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.activity_main );
 		
-		photoListView = (ListView) findViewById( R.id.IDV_PHOTO_LISTVIEW );
-		photoListView.setAdapter( new PhotoAdapter( this ) );
-		photoListView.setOnItemClickListener( this );
+		generateDummyPhoto();
+		
+		mProgress = (ProgressBar) findViewById( R.id.IDV_PROGRESSBAR );
+		
+		mList = (ListView) findViewById( R.id.IDV_PHOTO_LISTVIEW );
+		mList.setOnItemClickListener( this );
+				
+		PhotoDAO dao = new PhotoDAO( MainActivity.this );
+		Cursor photoCursor = dao.selectAllPhotos();
+		
+		mList.setAdapter( new PhotoAdapter( this, photoCursor ) );
 	}
+
+	private void generateDummyPhoto()
+     {
+		PhotoDAO dao = new PhotoDAO( this );
+//		dao.deleteAll();
+		Photo photo = new Photo( 0, "Titulo :D", null, null, 1024, 768, 20, 1.00, 1.00, 1.00, "" );
+		dao.insert( photo );
+     }
 
 	/*********************************************************/
 	/*                                                       */ 
@@ -50,7 +73,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	@Override
      public void onItemClick( AdapterView< ? > parent, View view, int position, long id )
      {
-		if( (ListView)parent == photoListView )
+		if( (ListView)parent == mList )
           {
 	          TextView photoName = (TextView)view.findViewById( R.id.IDV_PHOTO_NAME );
 	          TextView photoDescription = (TextView)view.findViewById( R.id.IDV_PHOTO_DESCRIPTION);
