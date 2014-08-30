@@ -75,14 +75,8 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
      {
 		if( (ListView)parent == mList )
           {
-	          TextView photoName = (TextView)view.findViewById( R.id.IDV_PHOTO_NAME );
-	          TextView photoDescription = (TextView)view.findViewById( R.id.IDV_PHOTO_DESCRIPTION);
-	          
 	          Intent intent = new Intent( MainActivity.this, PhotoActivity.class );
-	          Bundle extras = new Bundle();
-	          extras.putString( ASMApplication.IDRC_PHOTO_NAME, (String) photoName.getText() );
-	          extras.putString( ASMApplication.IDRC_PHOTO_DESCRIPTION, (String) photoDescription.getText() );
-	          intent.putExtras( extras );
+	          intent.putExtra( ASMApplication.IDRC_PHOTO_ID, id );
 	          startActivity( intent );
           }
      }
